@@ -1,5 +1,6 @@
 /**
  * Taken from: https://github.com/ascpixi/disconnect-packet-fix
+ * And addapted for NeoForge
  */
 
 package dev.roaguirr.disconnectPacketFix.mixin;
@@ -8,7 +9,7 @@ import dev.roaguirr.disconnectPacketFix.DisconnectPacketFixMod;
 
 import io.netty.buffer.ByteBuf;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.network.handler.PacketCodecDispatcher;
+import net.minecraft.network.codec.IdDispatchCodec;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -19,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Objects;
 import java.util.function.Function;
 
-@Mixin(PacketCodecDispatcher.class)
+@Mixin(IdDispatchCodec.class)
 public abstract class ConnectionMixin {
     @Final
     @Shadow
