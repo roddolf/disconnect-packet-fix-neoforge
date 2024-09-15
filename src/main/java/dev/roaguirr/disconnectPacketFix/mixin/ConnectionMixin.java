@@ -24,16 +24,16 @@ import java.util.function.Function;
 public abstract class ConnectionMixin {
     @Final
     @Shadow
-    private Function<Object, ?> packetIdGetter;
+    private Function<Object, ?> typeGetter;
 
     @Final
     @Shadow
-    private Object2IntMap<Object> typeToIndex;
+    private Object2IntMap<Object> toId;
 
     @Inject(at = @At("HEAD"), method = "encode(Lio/netty/buffer/ByteBuf;Ljava/lang/Object;)V", cancellable = true)
     private void encodeMixin(ByteBuf byteBuf, Object object, CallbackInfo info) {
-        var packetId = this.packetIdGetter.apply(object);
-        if (!this.typeToIndex.containsKey(packetId)) {
+        var packetId = this.typeGetter.apply(object);
+        if (!this.toId.containsKey(packetId)) {
             if (Objects.equals(String.valueOf(packetId), "clientbound/minecraft:disconnect")) {
                 DisconnectPacketFixMod.LOGGER.debug("Caught an invalid disconnect packet.");
                 info.cancel();
