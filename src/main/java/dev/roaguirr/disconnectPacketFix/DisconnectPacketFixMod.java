@@ -39,7 +39,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class DisconnectPacketFixMod
 {
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "disconnectPacketFix";
+    public static final String MODID = "disconnectpacketfix_neoforge";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
@@ -57,6 +57,6 @@ public class DisconnectPacketFixMod
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-        LOGGER.info("[disconnectPacketFix] mod starting");        
+        LOGGER.info("[disconnectpacketfix_neoforge] mod starting");        
     }
 }
